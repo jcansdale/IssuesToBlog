@@ -55,7 +55,8 @@ tags: [{string.Join(',', issue.Labels)}]
 
             if (args.Length > 0 && args[0] == "push")
             {
-                PushChangedFiles("_posts", token);
+                var viewer = await GetViewerInfo(connection);
+                PushChangedFiles("_posts", token, viewer.name, viewer.email);
             }
         }
 
@@ -122,6 +123,16 @@ tags: [{string.Join(',', issue.Labels)}]
                 .ToList();
         }
 
+        static async Task<(string name, string email)> GetViewerInfo(Connection connection)
+        {
+            var query = new Query()
+                .Viewer
+                .Select(v => new { v.Name, v.Email });
+
+            var info = await connection.Run(query);
+            return (info.Name, info.Email);
+        }
+
         static (string owner, string repositoryName, string workingDirectory) GetLocalRepository()
         {
             var dir = LibGit2Sharp.Repository.Discover(".");
@@ -136,13 +147,13 @@ tags: [{string.Join(',', issue.Labels)}]
             }
         }
 
-        static void PushChangedFiles(string path, string token)
+        static void PushChangedFiles(string path, string token, string name, string email)
         {
             var dir = LibGit2Sharp.Repository.Discover(".");
             using (var repo = new LibGit2Sharp.Repository(dir))
             {
                 LibGit2Sharp.Commands.Stage(repo, path);
-                var author = new LibGit2Sharp.Signature("YourName", "you@example.com", DateTimeOffset.Now);
+                var author = new LibGit2Sharp.Signature(name, email, DateTimeOffset.Now);
                 repo.Commit("update", author, author, new LibGit2Sharp.CommitOptions { });
                 var remote = repo.Network.Remotes["origin"];
                 var options = new LibGit2Sharp.PushOptions
