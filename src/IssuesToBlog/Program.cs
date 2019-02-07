@@ -71,6 +71,7 @@ message: <p>{comment.BodyText}</p>";
             {
                 var viewer = await GetViewerInfo(connection);
                 PushChangedFiles("_posts", token, viewer.name, viewer.email);
+                PushChangedFiles("_data", token, viewer.name, viewer.email);
             }
         }
 
