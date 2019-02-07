@@ -13,5 +13,6 @@ namespace IssuesToBlog
         public IList<string> Labels { get; set; }
         public string Body { get; set; }
         public IList<CommentModel> Comments { get; set; }
+        public string Url { get; set; }
     }
 }

@@ -49,7 +49,9 @@ tags: [{string.Join(',', issue.Labels)}]
 {header}
 ---
 
-{body}";
+{body}
+
+[Comment]({issue.Url}) on this post!";
                 File.WriteAllText(path, contents);
 
                 foreach(var comment in issue.Comments)
@@ -127,6 +129,7 @@ message: <p>{comment.BodyText}</p>";
                 .Nodes
                 .Select(y => new IssueModel
                 {
+                    Url = y.Url,
                     Number = y.Number,
                     Title = y.Title,
                     Body = y.Body,
