@@ -159,7 +159,7 @@ tags: [{string.Join(',', issue.Labels)}]
                 var options = new LibGit2Sharp.PushOptions
                 {
                     CredentialsProvider = (_url, _user, _cred) =>
-                        new LibGit2Sharp.UsernamePasswordCredentials { Username = "jcansdale", Password = token }
+                        new LibGit2Sharp.UsernamePasswordCredentials { Username = "token", Password = token }
                 };
 
                 repo.Network.Push(remote, @"refs/heads/master", options);
