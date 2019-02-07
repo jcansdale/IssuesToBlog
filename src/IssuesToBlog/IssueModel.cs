@@ -10,7 +10,8 @@ namespace IssuesToBlog
         public int Number { get; set; }
         public string Title { get; set; }
         public DateTimeOffset? CreatedAt { get; set; }
-        public IList<string> Labels { get; internal set; }
-        public string Body { get; internal set; }
+        public IList<string> Labels { get; set; }
+        public string Body { get; set; }
+        public IList<CommentModel> Comments { get; set; }
     }
 }

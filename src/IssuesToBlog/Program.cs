@@ -51,6 +51,20 @@ tags: [{string.Join(',', issue.Labels)}]
 
 {body}";
                 File.WriteAllText(path, contents);
+
+                foreach(var comment in issue.Comments)
+                {
+                    var commentDir = Path.Combine(workingDirectory, "_data", "comments", $"issue-{issue.Number}");
+                    var commentPath = Path.Combine(commentDir, $"{comment.Id}.yml");
+                    Directory.CreateDirectory(commentDir);
+                    var commentContents =
+$@"id: {comment.Id}
+date: {comment.PublishedAt?.ToString("u")}
+name: {comment.AuthorLogin}
+avatar: {comment.AvatarUrl}
+message: <p>{comment.BodyText}</p>";
+                    File.WriteAllText(commentPath, commentContents);
+                }
             }
 
             if (args.Length > 0 && args[0] == "push")
@@ -117,6 +131,14 @@ tags: [{string.Join(',', issue.Labels)}]
                     Body = y.Body,
                     CreatedAt = y.CreatedAt,
                     Labels = y.Labels(30, null, null, null).Nodes.Select(z => z.Name).ToList(),
+                    Comments = y.Comments(100, null, null, null).Nodes.Select(c => new CommentModel
+                    {
+                        BodyText = c.BodyText,
+                        Id = c.Id.Value,
+                        PublishedAt = c.PublishedAt,
+                        AuthorLogin = c.Author.Login,
+                        AvatarUrl = c.Author.AvatarUrl(160)
+                    }).ToList()
                 });
 
             return (await connection.Run(query))
