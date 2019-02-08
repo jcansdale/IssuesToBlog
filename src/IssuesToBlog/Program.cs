@@ -46,6 +46,7 @@ $@"---
 title: ""{issue.Title}""
 date: {issue.CreatedAt.Value.ToString("u")}
 tags: [{string.Join(',', issue.Labels)}]
+url: [{issue.Url}]
 {header}
 ---
 
