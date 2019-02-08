@@ -71,7 +71,7 @@ message: <p>{comment.BodyText}</p>";
             if (args.Length > 0 && args[0] == "push")
             {
                 var viewer = await GetViewerInfo(connection);
-                PushChangedFiles(".", "update", token, viewer.name, viewer.email);
+                PushChangedFiles(new[] { "_posts", "_data" }, "update", token, viewer.name, viewer.email);
             }
         }
 
@@ -171,12 +171,12 @@ message: <p>{comment.BodyText}</p>";
             }
         }
 
-        static void PushChangedFiles(string path, string message, string token, string name, string email)
+        static void PushChangedFiles(IEnumerable<string> paths, string message, string token, string name, string email)
         {
             var dir = LibGit2Sharp.Repository.Discover(".");
             using (var repo = new LibGit2Sharp.Repository(dir))
             {
-                LibGit2Sharp.Commands.Stage(repo, path);
+                LibGit2Sharp.Commands.Stage(repo, paths);
                 var author = new LibGit2Sharp.Signature(name, email, DateTimeOffset.Now);
                 repo.Commit(message, author, author, new LibGit2Sharp.CommitOptions { });
                 var remote = repo.Network.Remotes["origin"];
