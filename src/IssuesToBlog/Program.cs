@@ -50,9 +50,7 @@ comment_url: {issue.Url}
 {header}
 ---
 
-{body}
-
-[Comment]({issue.Url}) on this post!";
+{body}";
                 File.WriteAllText(path, contents);
 
                 foreach(var comment in issue.Comments)
