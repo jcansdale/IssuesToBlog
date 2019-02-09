@@ -12,7 +12,7 @@ repository: jcansdale/IssuesToBlog
 # contact
 contact:
 #  email: your-email@domain.com  # Comment out this line if you don't want to expose your email.
-  url: https://jcansdale.github.io/IssuesToBlog/issues/new # Uncomment this to provide a contact form url instead of an email
+  url: https://github.com/jcansdale/IssuesToBlog/issues/new # Uncomment this to provide a contact form url instead of an email
 
 # social links
 twitter_username: jcansdale
