@@ -135,7 +135,7 @@ message: <p>{comment.BodyText}</p>";
                     Labels = y.Labels(30, null, null, null).Nodes.Select(z => z.Name).ToList(),
                     Comments = y.Comments(100, null, null, null).Nodes.Select(c => new CommentModel
                     {
-                        BodyText = c.BodyText,
+                        BodyText = c.BodyHtml,
                         Id = c.Id.Value,
                         PublishedAt = c.PublishedAt,
                         AuthorLogin = c.Author.Login,
