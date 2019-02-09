@@ -25,7 +25,7 @@ rss: rss
 # By default, your site generates a subscription feed (RSS/Atom) at /feed.xml
 # Uncomment the next two lines to change the path.
 feed:
-   path: /atom.xml
+   path: /IssuesToBlog/atom.xml
 
 # If you use a feed publisher such as Feedburner, uncomment the next line
 # subscribe_rss: http://feeds.jcansdale.com/jcansdale
@@ -50,10 +50,10 @@ haackbar:
 #
 # Jekyll Settings
 #
-permalink: /archive/:year/:month/:day/:title/
+permalink: /IssuesToBlog/archive/:year/:month/:day/:title/
 paginate: 20
 page_group_size: 5 # number of pages to group by in the pagination.
-paginate_path: "/archive/page/:num"
+paginate_path: "/IssuesToBlog/archive/page/:num"
 category_dir: categories
 
 # Build settings
