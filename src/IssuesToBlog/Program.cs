@@ -63,7 +63,11 @@ $@"id: {comment.Id}
 date: {comment.PublishedAt?.ToString("u")}
 name: {comment.AuthorLogin}
 avatar: {comment.AvatarUrl}
-message: {comment.BodyHTML}";
+message: |";
+                    foreach(var line in comment.BodyHTML.Split('\n'))
+                    {
+                        commentContents += $"\n    {line}";
+                    }
                     File.WriteAllText(commentPath, commentContents);
                 }
             }
