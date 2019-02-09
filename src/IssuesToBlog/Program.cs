@@ -63,7 +63,7 @@ $@"id: {comment.Id}
 date: {comment.PublishedAt?.ToString("u")}
 name: {comment.AuthorLogin}
 avatar: {comment.AvatarUrl}
-message: <p>{comment.BodyText}</p>";
+message: {comment.BodyHTML}";
                     File.WriteAllText(commentPath, commentContents);
                 }
             }
@@ -135,7 +135,7 @@ message: <p>{comment.BodyText}</p>";
                     Labels = y.Labels(30, null, null, null).Nodes.Select(z => z.Name).ToList(),
                     Comments = y.Comments(100, null, null, null).Nodes.Select(c => new CommentModel
                     {
-                        BodyText = c.BodyHtml,
+                        BodyHTML = c.BodyHTML,
                         Id = c.Id.Value,
                         PublishedAt = c.PublishedAt,
                         AuthorLogin = c.Author.Login,

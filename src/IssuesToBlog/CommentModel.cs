@@ -7,7 +7,7 @@ namespace IssuesToBlog
 {
     public class CommentModel
     {
-        public string BodyText { get; set; }
+        public string BodyHTML { get; set; }
         public string Id { get; set; }
         public DateTimeOffset? PublishedAt { get; set; }
         public string AuthorLogin { get; set; }
