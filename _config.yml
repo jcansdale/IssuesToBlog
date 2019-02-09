@@ -1,41 +1,34 @@
-title: Your awesome title
-subtitle: ...and more title
-author: Blog Author
-avatar_url: /assets/img/unknown-avatar.png  # Should be 160x160px.
+title: Issues to Blog
+subtitle: Because laziness is the mother of invention
+author: author
+# avatar_url: https://en.gravatar.com/userimage/139060802/b01cf77915709dca9a78ade7dbecc842.png?size=160 # Should be 160x160px.
+# email: your-email@domain.com  # Comment out this line if you don't want to expose your email.
 description: > # this means to ignore newlines until "twitter_username:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-repository: jcansdale/haackbar
+  blar
+  blar
+  blar
+repository: jcansdale/jcansdale.github.io
 
 # contact
 contact:
-  email: your-email@domain.com  # Comment out this line if you don't want to expose your email.
-#  url: https://your-contact-url # Uncomment this to provide a contact form url instead of an email
+#  email: your-email@domain.com  # Comment out this line if you don't want to expose your email.
+  url: https://github.com/jcansdale/jcansdale.github.io/issues/new # Uncomment this to provide a contact form url instead of an email
 
 # social links
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: jcansdale
+github_username:  jcansdale
 rss: rss
-#dribbble_username: jekyll
-#facebook_username: jekyll
-#flickr_username: jekyll
-#instagram_username: jekyll
-#linkedin_username: jekyll
-#pinterest_username: jekyll
-#youtube_username: jekyll
-#googleplus_username: +jekyll
 
 # 
 # Subscribe Feed
 # 
 # By default, your site generates a subscription feed (RSS/Atom) at /feed.xml
 # Uncomment the next two lines to change the path.
-# feed:
-#   path: /atom.xml
+feed:
+   path: /atom.xml
 
 # If you use a feed publisher such as Feedburner, uncomment the next line
-# subscribe_rss: https://your-feedburner-url/
+# subscribe_rss: http://feeds.jcansdale.com/jcansdale
 
 # Homepage
 show_excerpts: true  # set to true to show excerpts on the homepage, otherwise full posts are shown
@@ -43,10 +36,9 @@ show_excerpts: true  # set to true to show excerpts on the homepage, otherwise f
 # Comments
 # To enable comments, set the `enabled` field to true and supply either a Disqus short name or a Jekyll comments receiver
 comments:
-  enabled: false
-  show_count: false
-#  receiver: https://.../  # See https://haacked.com/archive/2018/06/24/comments-for-jekyll-blogs/ for more information.
-#  disqus_shortname: YOUR_DISQUS_SHORTNAME
+  enabled: true
+  show_count: true
+#  receiver: https://jcansdale.azurewebsites.net/api/PostComment  # See https://haacked.com/archive/2018/06/24/comments-for-jekyll-blogs/ for more information.
 
 emptyArray: [] # Leave this here.
 
@@ -59,44 +51,28 @@ haackbar:
 # Jekyll Settings
 #
 permalink: /archive/:year/:month/:day/:title/
-paginate: 2 # number of posts per page
+paginate: 20
 page_group_size: 5 # number of pages to group by in the pagination.
 paginate_path: "/archive/page/:num"
-
-# Front matter defaults
-defaults:
-  -
-    scope:
-      path: "_posts"
-      type: "posts"
-    values:
-      layout: post
-      comments: true
-  -
-    scope:
-      path: "pages"
-      type: "pages"
-    values:
-      layout: page
-      comments: false
-  -
-    scope:
-      path: "assets/pages"
-      type: "pages"
-    values:
-      layout: page
-      comments: false
+category_dir: categories
 
 # Build settings
 markdown: kramdown
 kramdown:
   hard_wrap: false
-exclude:
-  - Gemfile
-  - Gemfile.lock
+remote_theme: jcansdale/haackbar
 
+exclude: [README.md CODE_OF_CONDUCT.md script .gitattributes .gitignore keybase.txt RakeFile]
+keep_files: [images demos code ads.txt robots.txt favicon.ico]
+incremental: true
+
+# Plugins
 plugins:
   - jekyll-seo-tag
+  - jekyll-github-metadata
   - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-sitemap
   - jekyll-paginate
   - jekyll-include-cache
+theme: jekyll-theme-slate
