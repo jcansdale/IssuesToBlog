@@ -46,7 +46,7 @@ $@"---
 title: ""{issue.Title}""
 date: {issue.CreatedAt.Value.ToString("u")}
 tags: [{string.Join(',', issue.Labels)}]
-comment_url: {issue.Url}
+new_comment_url: {issue.Url}#new_comment_field
 {header}
 ---
 
