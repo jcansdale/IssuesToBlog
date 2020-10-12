@@ -75,7 +75,9 @@ message: |";
             if (args.Length > 0 && args[0] == "push")
             {
                 var viewer = await GetViewerInfo(connection);
-                PushChangedFiles(new[] { "_posts", "_data" }, "update", token, viewer.name, viewer.email);
+                var name = Environment.GetEnvironmentVariable("VIEWER_NAME") ?? viewer.name;
+                var email = Environment.GetEnvironmentVariable("VIEWER_EMAIL") ?? viewer.email;
+                PushChangedFiles(new[] { "_posts", "_data" }, "update", token, name, email);
             }
         }
 
